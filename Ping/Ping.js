@@ -19,6 +19,14 @@ class Ping extends Component {
       .then(response => this.setState({ message: response.data.message }))
       .catch(error => this.setState({ message: error.message }));
   }
+    getuserId() {
+        const { getAccessToken } = this.props.auth;
+        console.log(this.props.auth, "this.props.auth");
+        const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
+        axios.get(`${API_URL}/userId`, { headers })
+            .then(response => this.setState({ message: response.data.message }))
+            .catch(error => this.setState({ message: error.message }));
+    }
   render() {
     const { isAuthenticated } = this.props.auth;
     const { message } = this.state;
@@ -38,6 +46,14 @@ class Ping extends Component {
               </Button>
             )
         }
+          {' '}
+          {
+              isAuthenticated() && (
+                  <Button bsStyle="primary" onClick={this.getuserId.bind(this)}>
+                    Get user
+                  </Button>
+              )
+          }
         <h2>{message}</h2>
       </div>
     );

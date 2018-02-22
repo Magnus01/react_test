@@ -36,6 +36,13 @@ export const makeMainRoutes = () => {
               <Ping auth={auth} {...props} />
             )
           )} />
+          <Route path="/User" render={(props) => (
+              !auth.isAuthenticated() ? (
+                  <Redirect to="/home"/>
+              ) : (
+                  <Ping auth={auth} {...props} />
+              )
+          )} />
         <Route
           path="/callback"
           render={props => {

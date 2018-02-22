@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
+import { API_URL } from './constants';
+import axios from 'axios';
+
 import './App.css';
 
 class App extends Component {
@@ -8,7 +11,9 @@ class App extends Component {
   }
 
   login() {
-    this.props.auth.login();
+      this.props.auth.login();
+
+
   }
 
   logout() {
@@ -36,7 +41,7 @@ class App extends Component {
             >
               Home
             </Button>
-            {!isAuthenticated() &&  
+            {!isAuthenticated() &&
               <Button
                 bsStyle="primary"
                 className="btn-margin"
@@ -71,6 +76,14 @@ class App extends Component {
                   </Button>
                 )
             }
+              {isAuthenticated() &&
+              <Button
+                  bsStyle="primary"
+                  className="btn-margin"
+                  onClick={this.goTo.bind(this, 'User')}
+              >
+               get user
+              </Button>}
             {isAuthenticated() &&
               <Button
                 bsStyle="primary"

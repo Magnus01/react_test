@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import { API_URL } from './../constants';
+import axios from 'axios';
 
 class Home extends Component {
   getExpiryDate() {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return JSON.stringify(new Date(expiresAt));
   }
+    registrationtodb() {
+
+        const { getAccessToken } = this.props.auth;
+        console.log(this.props.auth, "this.props.auth LOGIN");
+        const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
+        axios.get(`${API_URL}/userId`, { headers })
+            .then(response => this.setState({ message: response.data.message }))
+            .catch(error => this.setState({ message: error.message }));
+
+    }
   render() {
     const { isAuthenticated, login } = this.props.auth;
     return (
@@ -16,6 +28,7 @@ class Home extends Component {
             <p>
               Your <code>access_token</code> has an expiry date of:{' '}
               {this.getExpiryDate()}
+
             </p>
             <p>
               The token has been scheduled for renewal, but you can also renew it manually from the navbar
