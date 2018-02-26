@@ -12,7 +12,7 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: "testApi",
     responseType: 'token id_token',
-    scope: 'openid profile'
+    scope: 'openid profile email'
   });
 
   constructor() {
@@ -33,7 +33,8 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        history.replace('/home');
+        alert('reigster');
+        history.replace('/register');
       } else if (err) {
         history.replace('/home');
         console.log(err);

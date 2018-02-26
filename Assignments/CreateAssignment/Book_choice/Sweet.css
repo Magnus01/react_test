@@ -1,0 +1,19 @@
+.swal2-shown {
+    position:absolute;
+    width:200;
+    height:300;
+    margin-bottom: 100px;
+    margin-left:200px;
+    margin-height:-400px;
+}
+
+.swal2-container {
+    position:absolute;
+    width:200;
+    height:300;
+    margin-bottom: 100px;
+    margin-left:200px;
+    margin-height:-400px;
+}
+
+/*swal2-center swal2-fade swal2-shown*/
