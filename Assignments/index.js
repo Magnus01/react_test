@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import {createclass,fmoveup, fdashboard} from '../../actions/classroom';
+import {createclass,fmoveup, fdashboard} from '../actions/classroom';
 
-import {fclassdashboard,classdashboard, fbookdashboard,bookdashboard} from '../../actions/classroom';
+import {fclassdashboard,classdashboard, fbookdashboard,bookdashboard} from '../actions/classroom';
 
-import {fbookcss, fclassroomcss, classroomcss,bookcss} from '../../actions/classroom';
-import {fassignment, inassignments, bookstore, assignment} from '../../actions/assignments';
+import {fbookcss, fclassroomcss, classroomcss,bookcss} from '../actions/classroom';
+import {fassignment, inassignments, bookstore, assignment} from '../actions/assignments';
 import Back from '../images/back3.png';
 import {connect} from 'react-redux';
 
@@ -31,10 +31,12 @@ class Dashboard extends Component {
         this.assignment_mover = this.assignment_mover.bind(this);
         this.bookstore_mover = this.bookstore_mover.bind(this);
         this.back = this.back.bind(this);
+        this.goTo = this.goTo.bind(this);
     }
 
     assignment_mover () {
         this.props.fassignment();
+        this.goTo('createassignment1');
         this.props.inassignments();
     }
 
@@ -47,6 +49,13 @@ class Dashboard extends Component {
     back () {
         this.props.fassignment();
         this.props.createclass();
+        this.goTo('classroom');
+    }
+
+    goTo(route) {
+        console.log( 'route');
+
+        this.props.history.replace(`/${route}`);
     }
 
     render() {
@@ -161,16 +170,6 @@ class Dashboard extends Component {
                                             </a>
                                         </li>
                                     </ul>
-                                    {/*<form className="navbar-form navbar-right" role="search">*/}
-                                        {/*<div className="form-group  is-empty">*/}
-                                            {/*<input type="text" className="form-control" placeholder="Search"></input>*/}
-                                                {/*<span className="material-input"></span>*/}
-                                        {/*</div>*/}
-                                        {/*<button type="submit" className="btn btn-white btn-round btn-just-icon">*/}
-                                            {/*<i className="material-icons">search</i>*/}
-                                            {/*<div className="ripple-container"></div>*/}
-                                        {/*</button>*/}
-                                    {/*</form>*/}
                                 </div>
                             </div>
                         </nav>
@@ -285,6 +284,7 @@ class Dashboard extends Component {
                                             </div>
                                         </div>
                                     </div>
+
                                     <div className="col-md-4">
                                         <div className="card">
                                             <div className="card-header card-chart" data-background-color="pink">
@@ -350,6 +350,7 @@ class Dashboard extends Component {
                                             </div>
                                         </div>
                                     </div>
+
                                     <div className="col-md-4">
                                         <div className="card">
                                             <div className="card-header card-chart" data-background-color="red">

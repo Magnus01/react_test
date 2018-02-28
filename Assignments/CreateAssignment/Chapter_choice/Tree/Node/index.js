@@ -9,7 +9,7 @@ import './style.css';
 
 
 
-import {  pChapter} from '../../../../../../actions/T_User';
+import {  pChapter} from '../../../../../actions/T_User';
 
 import {connect} from 'react-redux';
 

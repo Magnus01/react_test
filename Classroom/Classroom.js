@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import {User, createclass,dashboard, fcreateclass,fdashboard, moveup, makeclass1} from '../actions/classroom';
 import {assignment} from '../actions/assignments';
 
-// import './../css/normalize.css';
-// import './../css/webflow.css';
-// import './../css/magnuss-amazing-project.webflow.css';
-// import './../css/v2.css';
+import './../css/normalize.css';
+import './../css/webflow.css';
+import './../css/magnuss-amazing-project.webflow.css';
+import './../css/v2.css';
 
 import './../assets/css/bootstrap.min.css';
 import './../assets/css/material-dashboard.css?v=1.2.0';
@@ -19,6 +19,7 @@ import './../vis_css/bar.css';
 
 import './../assets/img/favicon.png';
 import './../assets/img/apple-icon.png';
+
 import {connect} from 'react-redux';
 
 class Dashboard extends Component {
@@ -30,6 +31,8 @@ class Dashboard extends Component {
         this.moverassignment = this.moverassignment.bind(this);
         this.MoveToUser = this.MoveToUser.bind(this);
         this.createclass = this.createclass.bind(this);
+        this.goTo = this.goTo.bind(this);
+
     }
 
     innerfunction () {
@@ -42,10 +45,14 @@ class Dashboard extends Component {
         this.props.moveup();
         setTimeout(() => this.innerfunction(), 700);
     }
+    goTo(route) {
+        this.props.history.replace(`/${route}`);
+    }
 
     mover () {
 
         this.props.fcreateclass();
+      this.goTo("makeclass1");
         this.props.makeclass1();
         // setTimeout(() => this.innerfunction(), 700);
     }
@@ -60,6 +67,7 @@ class Dashboard extends Component {
 
         this.props.fcreateclass();
         this.props.assignment();
+        this.goTo('assignment');
         // setTimeout(() => this.innerfunction(), 700);
     }
 

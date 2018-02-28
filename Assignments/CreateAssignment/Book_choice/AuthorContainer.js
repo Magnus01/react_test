@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 
 
-import {fstartassignment, fbookstore, fbookmovement, booktour, sweetalert} from '../../../../actions/assignments';
+import {fstartassignment, fbookstore, fbookmovement, booktour, sweetalert} from '../../../actions/assignments';
 
 import {connect} from 'react-redux';
 
@@ -13,15 +13,16 @@ class Dashboard extends Component {
         this.fbookmovementstate = this.fbookmovementstate.bind(this);
         this.exercise = this.exercise.bind(this);
         this.sweet = this.sweet.bind(this);
+        this.goTo = this.goTo.bind(this);
 
 
     }
 
-    // book_author () {
-    //     this.props.fassignment();
-    //     this.props.inassignments();
-    // }
-
+    goTo(route) {
+        console.log( 'route');
+        console.log(this.props, 'this.props. what is history');
+        this.props.propstopass.history.replace(`/${route}`);
+    }
 
     fbookmovementstate () {
         this.props.fbookmovement();
@@ -36,9 +37,11 @@ class Dashboard extends Component {
     }
 
     sweet () {
+        console.log(this.props, 'this.props');
         this.props.fstartassignment();
-        this.props.sweetalert();
 
+        this.props.sweetalert();
+            this.goTo('createassignment2');
     }
 
 

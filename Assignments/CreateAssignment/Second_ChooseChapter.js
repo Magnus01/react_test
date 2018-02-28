@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import AuthorContainer from './Book_choice/AuthorContainer';
 import SweetAlert from './Book_choice/SweetAlert';
 
-import {choosetime, fsweetalert, bookstore,inassignments,fbookstore, finassignments,bookmovement, assignment, fstartassignment} from '../../../actions/assignments';
+import {choosetime, fsweetalert, bookstore,inassignments,fbookstore, finassignments,bookmovement, assignment, fstartassignment} from '../../actions/assignments';
 import Tree from './Chapter_choice/TreeIndex';
 const myTreeData = [
     {
@@ -49,6 +49,7 @@ class Dashboard extends Component {
         this.moverassignment = this.moverassignment.bind(this);
         this.nextcss = this.nextcss.bind(this);
         this.mover = this.mover.bind(this);
+        this.goTo = this.goTo.bind(this);
 
     }
 
@@ -63,7 +64,12 @@ class Dashboard extends Component {
         this.props.fstartassignment();
         this.props.bookstore();
     }
+    goTo(route) {
+        console.log( 'route');
 
+        this.props.history.replace(`/${route}`);
+    }
+    move
 
     moverindex () {
 
@@ -73,6 +79,7 @@ class Dashboard extends Component {
     }
 
     mover() {
+        this.goTo('createassignment3');
         this.props.fsweetalert();
         this.props.choosetime();
     }

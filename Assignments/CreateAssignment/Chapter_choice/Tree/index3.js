@@ -12,7 +12,7 @@ import './style.css';
 import {connect} from 'react-redux';
 
 
-import {pointf,UserToStore, ChapterToStore,CourseToStore,refreshfetch, Activate} from '../../../../../actions/T_User';
+import {pointf,UserToStore, ChapterToStore,CourseToStore,refreshfetch, Activate} from '../../../../actions/T_User';
 
 var points;
 class Tree extends React.Component {

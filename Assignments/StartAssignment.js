@@ -19,7 +19,14 @@ class App2 extends Component {
         this.mouseMoveHandler = this.mouseMoveHandler.bind(this);
         this.mouseOutHandler = this.mouseOutHandler.bind(this);
         this.createTooltip = this.createTooltip.bind(this);
+        this.goTo = this.goTo.bind(this);
         this.state = {showToolTip: false};
+    }
+
+    goTo(route) {
+
+
+        this.props.history.replace(`/${route}`);
     }
 
     multiple () {
@@ -28,7 +35,7 @@ class App2 extends Component {
         this.props.analyzebooks();
     }
     mover () {
-
+        this.goTo('createassignment2');
         this.props.fstartassignment();
         this.props.choosechapter();
     }

@@ -140,6 +140,26 @@ export function updatedescription(description) {
     }
 }
 
+export function updatenameclass(nameclass) {
+
+    return (dispatch) => {
+        dispatch({
+            type: "SELECT_UPDATE_NAMECLASS",
+            payload: nameclass
+        })
+    }
+}
+
+export function updatesubjectclass(subjectclass) {
+
+    return (dispatch) => {
+        dispatch({
+            type: "SELECT_UPDATE_SUBJECTCLASS",
+            payload: subjectclass
+        })
+    }
+}
+
 export function hide() {
 
     return (dispatch) => {

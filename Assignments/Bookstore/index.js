@@ -32,8 +32,14 @@ class Dashboard extends Component {
         this.nextcss = this.nextcss.bind(this);
         this.moverindex = this.moverindex.bind(this);
         this.moverassignment = this.moverassignment.bind(this);
+        this.goTo = this.goTo.bind(this);
     }
 
+    goTo(route) {
+        console.log( 'route');
+
+        this.props.history.replace(`/${route}`);
+    }
 
     moverindex () {
 
@@ -48,6 +54,8 @@ class Dashboard extends Component {
         this.props.inassignments();
         // setTimeout(() => this.innerfunction(), 700);
     }
+
+
 
     nextcss () {
         this.props.bookmovement();

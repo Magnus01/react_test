@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {createclass,fmakeclass2,fmakeclass3, dashboard, fcreateclass,fdashboard, moveup} from '../../actions/classroom';
+import {createclass,fmakeclass2,fmakeclass3, dashboard, fcreateclass,fdashboard, moveup} from '../actions/classroom';
 
 import {connect} from 'react-redux';
 
@@ -13,11 +13,37 @@ class Dashboard extends Component {
         this.innerfunction = this.innerfunction.bind(this);
         this.mover = this.mover.bind(this);
         this.MoveToUser = this.MoveToUser.bind(this);
+        this.goTo = this.goTo.bind(this);
     }
+
+    goTo(route) {
+        this.props.history.replace(`/${route}`);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     innerfunction () {
         this.props.fmakeclass2();
         this.props.dashboard();
+
         // this.props.fmoveup();
     }
 
@@ -28,6 +54,7 @@ class Dashboard extends Component {
 
     mover () {
         this.props.fmakeclass3();
+        this.goTo('classroom');
         this.props.createclass();
     }
 

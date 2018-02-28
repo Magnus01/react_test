@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import { Navbar, Button } from 'react-bootstrap';
-
-// import './App.css';
 
 
 
@@ -43,8 +40,7 @@ class App extends Component {
 
     return (
       <div>
-        <div>
-          <div>
+
 
             {/*<div>*/}
               {/*<a onClick={this.goTo.bind(this, 'home')}>Auth0 - React</a>*/}
@@ -59,14 +55,14 @@ class App extends Component {
             {/*</button>*/}
 
 
-            {/*{!isAuthenticated() &&*/}
-              {/*<button*/}
-                {/*bsStyle="primary"*/}
-                {/*className="btn-margin"*/}
-                {/*onClick={this.login.bind(this)}*/}
-              {/*>*/}
-                {/*Log In*/}
-              {/*</button>}*/}
+            {!isAuthenticated() &&
+              <button
+                bsStyle="primary"
+                className="btn-margin"
+                onClick={this.login.bind(this)}
+              >
+                Log In
+              </button>}
 
               {/**/}
             {/*{isAuthenticated() &&*/}
@@ -123,8 +119,6 @@ class App extends Component {
               {/*</button>}*/}
 
 
-          </div>
-        </div>
       </div>
     );
   }

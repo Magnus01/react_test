@@ -11,7 +11,7 @@ import Link from '../Link';
 import './style.css';
 import {connect} from 'react-redux';
 
-import { refreshfetch,Activate} from '../actions/T_User';
+import { refreshfetch,Activate} from '../../actions/T_User';
 
 const percentage = [{percentage: 100, id: 1, locked: false },{percentage: 100,
     id: 2, locked: false },{percentage: 45, id: 3, locked: false },{percentage: 55, id: 4 , locked: false}

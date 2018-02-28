@@ -31,6 +31,8 @@ export default function courseReducer(state = {
                                           bookdashboard: false,
                                           title: '',
                                           description: '',
+                                          nameclass: '',
+                                          subjectclass: '',
                                           next: '',
                                       }, action) {
 
@@ -130,6 +132,15 @@ export default function courseReducer(state = {
         case "SELECT_UPDATE_DESCRIPTION":
             // state.title = state.title.concat(action.payload);
             state = {...state, description : action.payload};
+            break;
+        case "SELECT_UPDATE_NAMECLASS":
+            // state.title = state.title.concat(action.payload);
+            state = {...state, nameclass : action.payload};
+            break;
+
+        case "SELECT_UPDATE_SUBJECTCLASS":
+            // state.title = state.title.concat(action.payload);
+            state = {...state, subjectclass : action.payload};
             break;
 
         // case "SELECT_UPDATE_TITLE":

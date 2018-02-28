@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {createclass,dashboard, fcreateclass,fmakeclass1, makeclass2, fdashboard, moveup} from '../../actions/classroom';
+import {updatenameclass,updatesubjectclass, createclass,dashboard, fcreateclass,fmakeclass1, makeclass2, fdashboard, moveup} from '../actions/classroom';
+import axios from 'axios';
+import { API_URL } from './../constants';
 
 import {connect} from 'react-redux';
 
@@ -12,17 +14,65 @@ class Dashboard extends Component {
         this.innerfunction = this.innerfunction.bind(this);
         this.mover = this.mover.bind(this);
         this.MoveToUser = this.MoveToUser.bind(this);
+        this.goTo = this.goTo.bind(this);
+        this.handleChange2 = this.handleChange2.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.postclassroom = this.postclassroom.bind(this);
+    }
+
+
+
+    postclassroom() {
+        const { getAccessToken } = this.props.auth;
+
+        console.log(this.props.auth,this.state.profile, "this.props.auth");
+
+        const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
+
+        // let data= data: { 'user' : 'name' };
+        let json = {
+
+            "Name": this.props.user.nameclass,
+            "Description": this.props.user.classubject,
+
+        };
+        console.log(`${API_URL+'/'+this.state.profile.sub + '/' + 'classrooms'}`, 'consoleloggingclassroom');
+        axios.post(`${API_URL+'/'+this.state.profile.sub + '/' + 'classrooms'}`,json,  headers )
+            .then(response => this.setState({ message: response.data.message }))
+            .catch(error => this.setState({ message: error.message }));
+    }
+
+
+    goTo(route) {
+        this.props.history.replace(`/${route}`);
     }
 
     innerfunction () {
         this.props.fmakeclass1();
+
         this.props.dashboard();
         // this.props.fmoveup();
     }
+    handleChange2 (event) {
+        event.preventDefault();
+        let subjectclass = event.target.value;
+
+        this.props.updatesubjectclass(subjectclass);
+    }
+
+    handleChange (event) {
+        event.preventDefault();
+        let nameclass = event.target.value;
+
+        this.props.updatenameclass(nameclass);
+    }
 
     mover () {
+
         this.props.fmakeclass1();
+        this.goTo("makeclass2");
         this.props.makeclass2();
+        this.postclassroom();
 
 
     }
@@ -149,20 +199,58 @@ class Dashboard extends Component {
                                     <h3>Create Classroom </h3>
                                     <div className="div-block-5 form">
                                         <div className="w-form">
-                                            <form id="email-form" name="email-form" data-name="Email Form" className="form class">
-                                                <div className="div-book-11 w-clearfix"><label for="email" className="text-block-6 prototyp2">  Name  Class</label><input type="text" className="searchbar w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your class" id="name"></input></div>
-                                                <div className="div-book-11 w-clearfix"><label for="email" className="text-block-6 prototyp2">Name Subject</label><input type="text" className="searchbar w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="Enter your subject" id="name-2"></input></div>
+
+
+                                            <form id="email-form" name="email-form" data-name="Email Form" className="form class" onSubmit={this.handleSubmit2}>
+                                                <div className="div-book-11 w-clearfix">
+                                                    <label for="email" className="text-block-6 prototyp2">  Name  Class</label>
+                                                    <input
+                                                        type="text"
+                                                        className="searchbar w-input"
+                                                        maxlength="256"
+                                                        value = {this.props.user ? this.props.user.nameclass : ''}
+                                                        onChange = {this.handleChange}
+                                                        name="name"
+                                                        data-name="Name"
+                                                        placeholder="Enter your class"
+                                                        id="name">
+
+                                                    </input></div>
+                                                <div className="div-book-11 w-clearfix">
+                                                    <label for="email" className="text-block-6 prototyp2">Name Subject</label>
+                                                    <input
+                                                        type="text"
+                                                        className="searchbar w-input"
+                                                        maxlength="256"
+                                                        name="name-2"
+                                                        value = {this.props.user ? this.props.user.subjectclass : ''}
+                                                        onChange = {this.handleChange2}
+                                                        data-name="Name 2"
+                                                        placeholder="Enter your subject"
+                                                        id="name-2">
+                                                    </input>
+                                                </div>
+
+
                                             </form>
-                                            <div className="w-form-done">
-                                                <div>Thank you! Your submission has been received!</div>
-                                            </div>
-                                            <div className="w-form-fail">
-                                                <div>Oops! Something went wrong while submitting the form.</div>
-                                            </div>
+
+
+
+
+                                            {/*<form id="email-form" name="email-form" data-name="Email Form" className="form class">*/}
+                                                {/*<div className="div-book-11 w-clearfix"><label for="email" className="text-block-6 prototyp2">  Name  Class</label><input type="text" className="searchbar w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your class" id="name"></input></div>*/}
+                                                {/*<div className="div-book-11 w-clearfix"><label for="email" className="text-block-6 prototyp2">Name Subject</label><input type="text" className="searchbar w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="Enter your subject" id="name-2"></input></div>*/}
+                                            {/*</form>*/}
+                                            {/*<div className="w-form-done">*/}
+                                                {/*<div>Thank you! Your submission has been received!</div>*/}
+                                            {/*</div>*/}
+                                            {/*<div className="w-form-fail">*/}
+                                                {/*<div>Oops! Something went wrong while submitting the form.</div>*/}
+                                            {/*</div>*/}
                                         </div>
                                     </div>
 
-                                    <div className="width-calendar3 " style = {{marginTop: 100}}   >
+                                    <div className="width-calendar3 " style = {{marginTop: 1}}   >
                                         <div className="div-book-14">
                                             <div className="div-book-13"></div>
                                             <div className="div-book-12"></div>
@@ -197,4 +285,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, {fmakeclass1, makeclass2, dashboard, fcreateclass,fdashboard,moveup})(Dashboard);
+export default connect(mapStateToProps, {updatenameclass, updatesubjectclass, fmakeclass1, makeclass2, dashboard, fcreateclass,fdashboard,moveup})(Dashboard);

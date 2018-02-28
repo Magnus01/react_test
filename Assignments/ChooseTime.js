@@ -31,14 +31,28 @@ class App2 extends Component {
         super();
         this.multiple = this.multiple.bind(this);
         this.moveup = this.moveup.bind(this);
+        this.mover = this.mover.bind(this);
         this.multiple_bookstore = this.multiple_bookstore.bind(this);
         this.multiple_inassignments = this.multiple_inassignments.bind(this);
         this.mouseOverHandler = this.mouseOverHandler.bind(this);
         this.mouseMoveHandler = this.mouseMoveHandler.bind(this);
         this.mouseOutHandler = this.mouseOutHandler.bind(this);
         this.createTooltip = this.createTooltip.bind(this);
+        this.goTo = this.goTo.bind(this);
         this.state = {showToolTip: false};
     }
+
+    goTo(route) {
+
+
+        this.props.history.replace(`/${route}`);
+    }
+
+    mover() {
+        this.goTo('createassignment3');
+
+    }
+
 
     multiple () {
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {createclass,dashboard,makeclass3, fcreateclass,fdashboard, moveup, fmakeclass2} from '../../actions/classroom';
+import {createclass,dashboard,makeclass3, fcreateclass,fdashboard, moveup, fmakeclass2} from '../actions/classroom';
 
 
 import {connect} from 'react-redux';
@@ -14,10 +14,17 @@ class Dashboard extends Component {
         this.innerfunction = this.innerfunction.bind(this);
         this.mover = this.mover.bind(this);
         this.MoveToUser = this.MoveToUser.bind(this);
+        this.goTo = this.goTo.bind(this);
     }
+
+    goTo(route) {
+        this.props.history.replace(`/${route}`);
+    }
+
 
     innerfunction () {
         this.props.fmakeclass2();
+        this.goTo("makeclass3");
         this.props.dashboard();
         // this.props.fmoveup();
     }
@@ -29,6 +36,7 @@ class Dashboard extends Component {
 
     mover () {
         this.props.fmakeclass2();
+        this.goTo("makeclass3");
         this.props.makeclass3();
     }
 
@@ -158,7 +166,8 @@ class Dashboard extends Component {
                                                         <h3  style={{marginTop: -30, marginLeft: -100 }} >Add Students  </h3>
                                                         <div  style={{marginTop: 40, marginLeft: -40 }}  className="w-row">
                                                             <div className="w-clearfix w-col w-col-4"><label for="email" className="text-block-6 prototyp2 choosestudentstext">  Name  of your Student</label></div>
-                                                            <div className="w-col w-col-4"><input type="text" className="searchbar instudents w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your student" id="name"></input></div>
+                                                            <div className="w-col w-col-4">
+                                                                <input type="text" className="searchbar instudents w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your student" id="name"></input></div>
                                                             <div className="w-col w-col-4">
                                                                 <div className="button-2 check"></div>
                                                             </div>

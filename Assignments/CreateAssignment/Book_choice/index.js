@@ -209,7 +209,7 @@ class Dashboard extends Component {
 
                                                                 <div className="frontcover" onClick={ () => this.nextcss() }></div>
                                                             </div>
-                                                            {this.props.inclass.bookmovement === "next" ?   <AuthorContainer/> : null}
+                                                            {this.props.inclass.bookmovement === "next" ?   <AuthorContainer {this.props}/> : null}
                                                         </div>
 
 

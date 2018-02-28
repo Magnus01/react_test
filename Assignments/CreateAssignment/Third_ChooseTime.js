@@ -7,35 +7,8 @@ import Calendar from './Time_choice/choosetime2';
 import AuthorContainer from './Book_choice/AuthorContainer';
 import SweetAlert from './Book_choice/SweetAlert';
 
-import {fchoosetime,fsweetalert, bookstore,inassignments,fbookstore, finassignments,bookmovement, assignment, fstartassignment} from '../../../actions/assignments';
-import Tree from '../../TreeIndex';
-const myTreeData = [
-    {
-        "name": "Introduction",
-        "id": 1,
-        "children": [
-            {
-                "name": "Radio",
-                "id": 2,
-                "children": [
+import {fchoosetime,fsweetalert, bookstore,inassignments,fbookstore, finassignments,bookmovement, assignment, fstartassignment} from '../../actions/assignments';
 
-                    {"name": "Python", "size": 101,    "id": 3},  {"name": "Control", "size": 101,    "id": 4}
-
-                ]
-            },
-            {
-                "name": "Radio",
-                "id": 5,
-                "children": [
-
-                    {"name": "Tree", "size": 101,    "id": 6},  {"name": "Control", "size": 101,    "id": 7}
-
-                ]
-            }
-
-        ]
-    },
-];
 
 
 
@@ -49,14 +22,21 @@ class Dashboard extends Component {
         this.mover = this.mover.bind(this);
         this.moverassignment = this.moverassignment.bind(this);
         this.nextcss = this.nextcss.bind(this);
+        this.goTo = this.goTo.bind(this);
 
     }
 
     mover() {
         this.props.fchoosetime();
         this.props.inassignments();
+        this.goTo('assignment');
     }
 
+    goTo(route) {
+        console.log( 'route');
+        console.log(this.props, 'this.props. what is history');
+        this.props.history.replace(`/${route}`);
+    }
 
 
     bookstore_mover () {

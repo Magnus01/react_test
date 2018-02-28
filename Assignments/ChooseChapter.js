@@ -37,7 +37,13 @@ class App2 extends Component {
         this.mouseMoveHandler = this.mouseMoveHandler.bind(this);
         this.mouseOutHandler = this.mouseOutHandler.bind(this);
         this.createTooltip = this.createTooltip.bind(this);
+        this.goTo = this.goTo.bind(this);
         this.state = {showToolTip: false};
+    }
+    goTo(route) {
+
+
+        this.props.history.replace(`/${route}`);
     }
 
     multiple () {
@@ -50,6 +56,7 @@ class App2 extends Component {
 
         this.props.fchoosechapter();
         this.props.choosetime();
+        this.goTo('makeassignment3');
     }
 
     multiple_inassignments () {

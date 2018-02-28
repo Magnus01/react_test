@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import AuthorContainer from './Book_choice/AuthorContainer';
 import SweetAlert from './Book_choice/SweetAlert';
 
-import {bookstore,inassignments,fbookstore, finassignments,bookmovement, assignment, fstartassignment} from '../../../actions/assignments';
+import {bookstore,inassignments,fbookstore, finassignments,bookmovement, assignment, fstartassignment} from '../../actions/assignments';
 
 
 
@@ -224,7 +224,7 @@ class Dashboard extends Component {
 
                                                                 <div className="frontcover" onClick={ () => this.nextcss() }></div>
                                                             </div>
-                                                            {this.props.inclass.bookmovement === "next" ?   <AuthorContainer/> : null}
+                                                            {this.props.inclass.bookmovement === "next" ?   <AuthorContainer propstopass ={this.props}/> : null}
                                                         </div>
 
 

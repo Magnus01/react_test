@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {updatetitle, updatedescription, fregister2, fregister, next, fnext, register2, dashboard } from '../actions/classroom';
-// import { Navbar, Button } from 'react-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 
 import {connect} from 'react-redux';
 // import CircleButton from './Assignments/util/CircleButton';
@@ -26,6 +26,7 @@ class Register extends Component {
         this.handleSubmit2 = this.handleSubmit2.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.goTo = this.goTo.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     // componentWillReceiveProps = (nextProps) => {
@@ -120,13 +121,13 @@ class Register extends Component {
                 <div>
                     <div>
                         {isAuthenticated() &&
-                        <button
+                        <Button
                             bsStyle="primary"
                             className="btn-margin"
-                            onClick={this.logout.bind(this)}
+                            onClick={this.logout}
                         >
                             Log Out
-                        </button>}
+                        </Button>}
                     </div>
                 </div>
 
